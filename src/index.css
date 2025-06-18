@@ -59,13 +59,11 @@ button {
 }
 
 button:hover{
-	background-color: #ff1f1f;
+	background-color:#ffffff55;
+	
 }
 
-.button:focus,
-button:focus-visible {
-	background-color: #ffffff55;
-}
+
 
 section {
 	margin-top: 2rem;
