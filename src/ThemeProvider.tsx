@@ -1,10 +1,11 @@
-import { useEffect } from "react";
-import { ThemeContext } from "./theme.context";
+import { PropsWithChildren, useEffect } from "react";
+import { ThemeContext, type ThemeType } from "./theme.context";
 import { useState } from "react";
+import { IThemeContext } from "./theme.context";
 
-export function ThemeProvider({ children }) {
-  const [theme, setTheme] = useState(
-    () => localStorage.getItem("theme") || "dark"
+export function ThemeProvider({ children } : PropsWithChildren) {
+  const [theme, setTheme] = useState<ThemeType>(
+    () => localStorage.getItem("theme") as ThemeType || "dark"
   );
 
   useEffect(() => {
@@ -15,11 +16,11 @@ export function ThemeProvider({ children }) {
     setTheme((prev) => (prev === "dark" ? "light" : "dark"));
   return (
     <ThemeContext.Provider
-      value= {{
+      value={{
         theme,
         toggleTheme,
       }}
-      >
+    >
       {children}
     </ThemeContext.Provider>
   );

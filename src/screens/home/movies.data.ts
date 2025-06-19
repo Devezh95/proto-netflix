@@ -1,4 +1,6 @@
-export const MOVIES = [
+import { IMovie } from "./movie.interface";
+
+export const MOVIES: IMovie[] = [
     {
         name: 'narcos',
         image: '/narcos.jpg',

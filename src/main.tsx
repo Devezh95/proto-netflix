@@ -1,13 +1,14 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import App from './App.jsx'
+
 import './index.css'
+import MainRoutes from './MainRoutes.jsx'
 import { ThemeProvider } from './ThemeProvider.jsx'
 
-ReactDOM.createRoot(document.getElementById('root')).render(
+ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <ThemeProvider>
-    <App />
+    <MainRoutes />
     </ThemeProvider>
   </React.StrictMode>,
 )
