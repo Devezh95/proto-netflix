@@ -2,8 +2,10 @@ import { useState } from "react";
 import { useDebounce } from "./hooks/useDebounce";
 import MovieCard from "./MovieCard";
 import { MOVIES } from "./movies.data";
+import { useTheme } from "./hooks/useTheme";
 
 function App() {
+  const {theme, toggleTheme} = useTheme()
   const [searchTerm, setSearchTerm] = useState("");
   const debouncedSearch = useDebounce(searchTerm, 500);
   const movies = MOVIES.filter((movie) =>
@@ -11,9 +13,10 @@ function App() {
   );
   
   return (
-    <div className="min-h-screen w-full bg-black text-white px-6 py-5">
+    <div className="min-h-screen w-full bg-white dark:bg-black text-black dark:text-white px-6 py-5">
       <header className="mb-10 flex items-center justify-between">
         <img src="/netflix.png" alt="Netflix" className="h-8 w-auto" />
+        <div>
         <input
           type="search"
           value={searchTerm}
@@ -21,8 +24,17 @@ function App() {
             setSearchTerm(e.target.value);
           }}
           placeholder="Search..."
-          className="border px-2 py-1 border-white/15 rounded outline-0"
+          className="border border-black/15 px-2 py-1 dark:border-white/15 px-2 rounded outline-0"
         />
+        <button 
+        onClick={toggleTheme}
+        className='text-sm px-3 py-1 rounded border border-white/20
+        dark:border-white/10 hover:bg-white hover:text-black
+        dark:hover:bg-white/10 transition w-20'
+        >
+          {theme === 'dark' ? '☀️ light' : '🌑 dark'}
+        </button>
+        </div>
       </header>
       <main className="flex gap-6">
         {movies.length ? (
@@ -31,6 +43,7 @@ function App() {
               key={movie.name}
               image={movie.image}
               rating={movie.rating}
+              trailerYoutubeId={movie.trailerYoutubeId}
             />
           ))
         ) : (
