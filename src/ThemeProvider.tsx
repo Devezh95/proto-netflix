@@ -19,6 +19,10 @@ export function ThemeProvider({ children } : PropsWithChildren) {
       value={{
         theme,
         toggleTheme,
+
+
+
+        
       }}
     >
       {children}
